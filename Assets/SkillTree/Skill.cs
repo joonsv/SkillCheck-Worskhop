@@ -1,6 +1,5 @@
-[System.Serializable]
-public class Skill
-{
+﻿[System.Serializable]
+public class Skill {
 
     public int id_Skill;
     public int[] skill_Dependencies;

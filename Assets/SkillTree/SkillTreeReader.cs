@@ -1,10 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SkillTreeReader : MonoBehaviour
-{
+public class SkillTreeReader : MonoBehaviour {
 
     private static SkillTreeReader _instance;
 
@@ -32,7 +31,7 @@ public class SkillTreeReader : MonoBehaviour
 
     void Awake()
     {
-        if (_instance == null)
+        if(_instance == null)
         {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -44,19 +43,19 @@ public class SkillTreeReader : MonoBehaviour
         }
     }
 
-    // Use this for initialization of the skill tree
-    void SetUpSkillTree()
+	// Use this for initialization of the skill tree
+	void SetUpSkillTree ()
     {
         _skills = new Dictionary<int, Skill>();
 
         LoadSkillTree();
-    }
-
-    // Update is called once per frame
-    void Update()
+	}
+	
+	// Update is called once per frame
+	void Update ()
     {
-
-    }
+		
+	}
 
     public void LoadSkillTree()
     {
@@ -83,7 +82,7 @@ public class SkillTreeReader : MonoBehaviour
         else
         {
             Debug.LogError("Cannot load game data!");
-        }
+        }        
     }
 
     public bool IsSkillUnlocked(int id_skill)
@@ -101,9 +100,9 @@ public class SkillTreeReader : MonoBehaviour
     public bool CanSkillBeUnlocked(int id_skill)
     {
         bool canUnlock = true;
-        if (_skills.TryGetValue(id_skill, out _skillInspected)) // The skill exists
+        if(_skills.TryGetValue(id_skill, out _skillInspected)) // The skill exists
         {
-            if (_skillInspected.cost <= availablePoints) // Enough points available
+            if(_skillInspected.cost <= availablePoints) // Enough points available
             {
                 int[] dependencies = _skillInspected.skill_Dependencies;
                 for (int i = 0; i < dependencies.Length; ++i)
@@ -126,7 +125,7 @@ public class SkillTreeReader : MonoBehaviour
             {
                 return false;
             }
-
+            
         }
         else // If the skill id doesn't exist, the skill can't be unlocked
         {
@@ -137,7 +136,7 @@ public class SkillTreeReader : MonoBehaviour
 
     public bool UnlockSkill(int id_Skill)
     {
-        if (_skills.TryGetValue(id_Skill, out _skillInspected))
+        if(_skills.TryGetValue(id_Skill, out _skillInspected))
         {
             if (_skillInspected.cost <= availablePoints)
             {

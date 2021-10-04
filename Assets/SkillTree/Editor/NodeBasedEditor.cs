@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
@@ -52,7 +52,7 @@ public class NodeBasedEditor : EditorWindow
         selectedNodeStyle = new GUIStyle();
         selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node5 on.png") as Texture2D;
         selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
-
+        
         inPointStyle = new GUIStyle();
         inPointStyle.normal.background = Resources.Load("green") as Texture2D;
         inPointStyle.active.background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left on.png") as Texture2D;
@@ -64,7 +64,7 @@ public class NodeBasedEditor : EditorWindow
         outPointStyle.border = new RectOffset(4, 4, 12, 12);
 
         // Create buttons for clear, save and load
-        rectButtonClear = new Rect(new Vector2(10, 10), new Vector2(60, 20));
+        rectButtonClear = new Rect(new Vector2(10, 10), new Vector2(60,20));
         rectButtonSave = new Rect(new Vector2(80, 10), new Vector2(60, 20));
         rectButtonLoad = new Rect(new Vector2(150, 10), new Vector2(60, 20));
 
@@ -343,7 +343,7 @@ public class NodeBasedEditor : EditorWindow
         selectedInPoint = null;
         selectedOutPoint = null;
     }
-
+    
     // Function for clearing data from the editor window
     private void ClearNodes()
     {
@@ -359,7 +359,7 @@ public class NodeBasedEditor : EditorWindow
             }
         }
     }
-
+    
     // Save data from the window to the skill tree
     private void SaveSkillTree()
     {
@@ -445,7 +445,7 @@ public class NodeBasedEditor : EditorWindow
         }
         UnityEditor.AssetDatabase.Refresh();
     }
-
+    
     private void LoadNodes()
     {
         ClearNodes();
@@ -498,11 +498,10 @@ public class NodeBasedEditor : EditorWindow
                 }
 
                 Skill outSkill;
-                Node outNode;
+                Node outNode = null;
                 // Create connections
                 for (int i = 0; i < nodes.Count; ++i)
                 {
-                    Debug.Log(nodes[i].skill);
                     for (int j = 0; j < nodes[i].skill.skill_Dependencies.Length; ++j)
                     {
                         if (skillDictionary.TryGetValue(nodes[i].skill.skill_Dependencies[j], out outSkill))
@@ -525,7 +524,7 @@ public class NodeBasedEditor : EditorWindow
             {
                 Debug.LogError("Cannot load game data!");
             }
-        }
+        }        
     }
 
     private void LoadSkillCreateNode(Skill skill, Vector2 position)
@@ -536,7 +535,7 @@ public class NodeBasedEditor : EditorWindow
         }
 
         nodes.Add(new Node(position, 200, 100, nodeStyle, selectedNodeStyle,
-            inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode,
+            inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, 
             skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies));
         ++nodeCount;
     }

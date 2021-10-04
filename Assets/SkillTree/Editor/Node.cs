@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEditor;
 using UnityEngine;
 using System.Text;
@@ -45,18 +45,18 @@ public class Node
     // StringBuilder to create the node's title
     private StringBuilder nodeTitle;
 
-    public Node(Vector2 position, float width, float height, GUIStyle nodeStyle,
-        GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle,
+    public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, 
+        GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, 
         Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint,
         Action<Node> OnClickRemoveNode, int id, bool unlocked, int cost, int[] dependencies)
     {
         rect = new Rect(position.x, position.y, width, height);
         style = nodeStyle;
 
-        inPoint = new ConnectionPoint(this, ConnectionPointType.In,
+        inPoint = new ConnectionPoint(this, ConnectionPointType.In, 
             inPointStyle, OnClickInPoint);
 
-        outPoint = new ConnectionPoint(this, ConnectionPointType.Out,
+        outPoint = new ConnectionPoint(this, ConnectionPointType.Out, 
             outPointStyle, OnClickOutPoint);
 
         defaultNodeStyle = nodeStyle;
@@ -70,19 +70,19 @@ public class Node
         styleID = new GUIStyle();
         styleID.alignment = TextAnchor.UpperCenter;
 
-        rectUnlocked = new Rect(position.x + width / 2,
+        rectUnlocked = new Rect(position.x + width / 2, 
             position.y + 3 * rowHeight, width / 2, rowHeight);
 
-        rectUnlockLabel = new Rect(position.x,
+        rectUnlockLabel = new Rect(position.x, 
             position.y + 3 * rowHeight, width / 2, rowHeight);
 
         styleField = new GUIStyle();
         styleField.alignment = TextAnchor.UpperRight;
 
-        rectCostLabel = new Rect(position.x,
+        rectCostLabel = new Rect(position.x, 
             position.y + 4 * rowHeight, width / 2, rowHeight);
 
-        rectCost = new Rect(position.x + width / 2,
+        rectCost = new Rect(position.x + width / 2, 
             position.y + 4 * rowHeight, 20, rowHeight);
 
         this.unlocked = unlocked;
@@ -129,7 +129,7 @@ public class Node
 
         // Print the title
         GUI.Label(rectID, nodeTitle.ToString(), styleID);
-
+        
         // Print the unlock field
         GUI.Label(rectUnlockLabel, "Unlocked: ", styleField);
         if (GUI.Toggle(rectUnlocked, unlocked, ""))
