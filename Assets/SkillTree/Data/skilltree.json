@@ -1,0 +1,1 @@
+{"skilltree":[{"id_Skill":0,"skill_Dependencies":[],"unlocked":false,"cost":0},{"id_Skill":1,"skill_Dependencies":[0],"unlocked":true,"cost":2},{"id_Skill":2,"skill_Dependencies":[1],"unlocked":true,"cost":2}]}
