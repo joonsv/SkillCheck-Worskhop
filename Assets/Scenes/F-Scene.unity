@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: 6292684976058991841, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
       propertyPath: m_Actions
       value: 
-      objectReference: {fileID: -944628639613478452, guid: 43382b85d60af9c4c910a4b02902d304, type: 3}
+      objectReference: {fileID: -944628639613478452, guid: 25d2ea643c05e204f848b91f31dddcff, type: 3}
     - target: {fileID: 6292684976058991841, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
       propertyPath: m_NotificationBehavior
       value: 0
@@ -393,9 +393,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151140130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a94b5c27311e641bc03aee96681f1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 35b5326117584c448870306b31e5cf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugValue: 0
+  Speed: 10
 --- !u!1001 &678239639199843657
 PrefabInstance:
   m_ObjectHideFlags: 0
