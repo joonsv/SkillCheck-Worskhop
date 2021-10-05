@@ -21,6 +21,10 @@ public class Node
     public Rect rectCostLabel;
     public Rect rectCost;
 
+    //two rect for name skill
+    public Rect rectNameLabel;
+    public Rect rectName;
+
     public ConnectionPoint inPoint;
     public ConnectionPoint outPoint;
 
@@ -48,7 +52,7 @@ public class Node
     public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, 
         GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, 
         Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint,
-        Action<Node> OnClickRemoveNode, int id, bool unlocked, int cost, int[] dependencies)
+        Action<Node> OnClickRemoveNode, string name, int id, bool unlocked, int cost, int[] dependencies)
     {
         rect = new Rect(position.x, position.y, width, height);
         style = nodeStyle;
@@ -71,24 +75,31 @@ public class Node
         styleID.alignment = TextAnchor.UpperCenter;
 
         rectUnlocked = new Rect(position.x + width / 2, 
-            position.y + 3 * rowHeight, width / 2, rowHeight);
+            position.y + 4 * rowHeight, width / 2, rowHeight);
 
         rectUnlockLabel = new Rect(position.x, 
-            position.y + 3 * rowHeight, width / 2, rowHeight);
+            position.y + 4 * rowHeight, width / 2, rowHeight);
 
         styleField = new GUIStyle();
         styleField.alignment = TextAnchor.UpperRight;
 
         rectCostLabel = new Rect(position.x, 
-            position.y + 4 * rowHeight, width / 2, rowHeight);
+            position.y + 5.5f * rowHeight, width / 2, rowHeight);
 
         rectCost = new Rect(position.x + width / 2, 
-            position.y + 4 * rowHeight, 20, rowHeight);
+            position.y + 5.5f * rowHeight, 20, rowHeight);
 
         this.unlocked = unlocked;
 
+        rectNameLabel = new Rect(position.x,
+            position.y + 2 * rowHeight, width / 2, rowHeight);
+        rectName = new Rect(position.x + width / 2,
+            position.y + 2 * rowHeight, 70, rowHeight+10);
+
+
         // We create the skill with current node info
         skill = new Skill();
+        skill.name = name;
         skill.id_Skill = id;
         skill.unlocked = unlocked;
         skill.cost = cost;
@@ -109,6 +120,8 @@ public class Node
         rectUnlockLabel.position += delta;
         rectCost.position += delta;
         rectCostLabel.position += delta;
+        rectNameLabel.position += delta;
+        rectName.position += delta;
     }
 
     public void MoveTo(Vector2 pos)
@@ -119,6 +132,8 @@ public class Node
         rectUnlockLabel.position = pos;
         rectCost.position = pos;
         rectCostLabel.position = pos;
+        rectNameLabel.position = pos;
+        rectName.position = pos;
     }
 
     public void Draw()
@@ -142,6 +157,9 @@ public class Node
         // Print the cost field
         GUI.Label(rectCostLabel, "Cost: ", styleField);
         skill.cost = int.Parse(GUI.TextField(rectCost, skill.cost.ToString()));
+
+        GUI.Label(rectNameLabel, "Name: ", styleField);
+        skill.name = GUI.TextField(rectName, skill.name);
     }
 
     public bool ProcessEvents(Event e)
