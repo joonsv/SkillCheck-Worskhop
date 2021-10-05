@@ -152,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6292684976058991841, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6685137045181151447, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
       propertyPath: m_RootOrder
       value: 1

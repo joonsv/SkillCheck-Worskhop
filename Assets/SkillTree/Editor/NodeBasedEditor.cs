@@ -257,7 +257,7 @@ public class NodeBasedEditor : EditorWindow
         
 
         // We create the node with the default info for the node
-        nodes.Add(new Node(mousePosition, 200, 100, nodeStyle, selectedNodeStyle,
+        nodes.Add(new Node(mousePosition, 250, 150, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode,
             "new_name",nodeCount, false, 0, null));
         ++nodeCount;
@@ -535,7 +535,7 @@ public class NodeBasedEditor : EditorWindow
             nodes = new List<Node>();
         }
 
-        nodes.Add(new Node(position, 200, 100, nodeStyle, selectedNodeStyle,
+        nodes.Add(new Node(position, 250, 150, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, 
             skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies));
         ++nodeCount;
