@@ -33,6 +33,11 @@ public class NodeBasedEditor : EditorWindow
     // Dictionary with the skills in our skilltree
     private Dictionary<int, Skill> skillDictionary;
 
+    //length and width of a node
+    private float nodeHeight = 150;
+    private float nodeWidth = 250;
+    
+
     [MenuItem("Window/Node Based Editor")]
     private static void OpenWindow()
     {
@@ -257,7 +262,7 @@ public class NodeBasedEditor : EditorWindow
         
 
         // We create the node with the default info for the node
-        nodes.Add(new Node(mousePosition, 250, 150, nodeStyle, selectedNodeStyle,
+        nodes.Add(new Node(mousePosition, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode,
             "new_name",nodeCount, false, 0, null));
         ++nodeCount;
@@ -535,7 +540,7 @@ public class NodeBasedEditor : EditorWindow
             nodes = new List<Node>();
         }
 
-        nodes.Add(new Node(position, 250, 150, nodeStyle, selectedNodeStyle,
+        nodes.Add(new Node(position, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, 
             skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies));
         ++nodeCount;
