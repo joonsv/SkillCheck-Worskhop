@@ -132,6 +132,8 @@ public class Node
         rectUnlockLabel.position = pos;
         rectCost.position = pos;
         rectCostLabel.position = pos;
+        rectNameLabel.position = pos;
+        rectName.position = pos;
     }
 
     public void Draw()
