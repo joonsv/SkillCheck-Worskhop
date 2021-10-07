@@ -142,6 +142,26 @@ PrefabInstance:
       propertyPath: m_NotificationBehavior
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6292684976347404167, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292684976347404167, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292684976347404167, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292684976347404167, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292684976347404167, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6685137045181151447, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -396,5 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a94b5c27311e641bc03aee96681f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugValue: 0
-  Speed: 0
+  mouseSensitivity: 70
+  WalkSpeed: 5
+  MinRotation: -45
+  MaxRotation: 10
