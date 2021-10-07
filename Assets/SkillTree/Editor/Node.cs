@@ -25,6 +25,10 @@ public class Node
     public Rect rectNameLabel;
     public Rect rectName;
 
+    //two rect for Image skill;
+    public Rect rectImage;
+    public Rect rectImageLabel;
+
     public ConnectionPoint inPoint;
     public ConnectionPoint outPoint;
 
@@ -84,10 +88,10 @@ public class Node
         styleField.alignment = TextAnchor.UpperRight;
 
         rectCostLabel = new Rect(position.x, 
-            position.y + 5.5f * rowHeight, width / 2, rowHeight);
+            position.y + 5f * rowHeight, width / 2, rowHeight);
 
         rectCost = new Rect(position.x + width / 2, 
-            position.y + 5.5f * rowHeight, 20, rowHeight);
+            position.y + 5f * rowHeight, 20, rowHeight);
 
         this.unlocked = unlocked;
 
@@ -95,6 +99,11 @@ public class Node
             position.y + 2 * rowHeight, width / 2, rowHeight);
         rectName = new Rect(position.x + width / 2,
             position.y + 2 * rowHeight, 70, rowHeight+10);
+
+        rectImageLabel = new Rect(position.x,
+            position.y + 6f * rowHeight, width / 2, rowHeight) ;
+        rectImage = new Rect(position.x + width / 2,
+            position.y + 6f * rowHeight, 20, rowHeight);
 
 
         // We create the skill with current node info
@@ -104,6 +113,7 @@ public class Node
         skill.unlocked = unlocked;
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
+        
 
         // Create string with ID info
         nodeTitle = new StringBuilder();
@@ -122,6 +132,8 @@ public class Node
         rectCostLabel.position += delta;
         rectNameLabel.position += delta;
         rectName.position += delta;
+        rectImageLabel.position += delta;
+        rectImage.position += delta;
     }
 
     public void MoveTo(Vector2 pos)
@@ -134,6 +146,8 @@ public class Node
         rectCostLabel.position = pos;
         rectNameLabel.position = pos;
         rectName.position = pos;
+        rectImageLabel.position = pos;
+        rectImage.position = pos;
     }
 
     public void Draw()
@@ -160,6 +174,10 @@ public class Node
 
         GUI.Label(rectNameLabel, "Name: ", styleField);
         skill.name = GUI.TextField(rectName, skill.name);
+
+        GUI.Label(rectImageLabel, "Image: ", styleField);
+        GUI.Window(0, rectImage, WindowFunction, skill.image);
+        
     }
 
     public bool ProcessEvents(Event e)
@@ -222,4 +240,11 @@ public class Node
             OnRemoveNode(this);
         }
     }
+
+    private void WindowFunction(int imageToken)
+    {
+
+    }
+
+
 }
