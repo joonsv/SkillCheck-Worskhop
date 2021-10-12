@@ -114,7 +114,8 @@ public class Node
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
         skill.image = "images/" + id;
-        
+
+
 
         // Create string with ID info
         nodeTitle = new StringBuilder();
