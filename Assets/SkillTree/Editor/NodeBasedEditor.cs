@@ -2,10 +2,19 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class NodeBasedEditor : EditorWindow
 {
     private List<Node> nodes;
+
+    private Rect skilltreeRect;
+    private Rect nodeDetailRect;
+    private Rect resizer;
+    private GUIStyle resizerStyle;
+    private bool isResizing;
+
+    private float sizeRatio = 0.7f;
     private List<Connection> connections;
 
     private GUIStyle nodeStyle;
@@ -73,6 +82,9 @@ public class NodeBasedEditor : EditorWindow
         rectButtonSave = new Rect(new Vector2(80, 10), new Vector2(60, 20));
         rectButtonLoad = new Rect(new Vector2(150, 10), new Vector2(60, 20));
 
+        resizerStyle = new GUIStyle();
+        resizerStyle.normal.background = EditorGUIUtility.Load("icons/d_AvatarBlendBackground.png") as Texture2D;
+
         // Initialize nodes with saved data
         LoadNodes();
     }
@@ -93,8 +105,36 @@ public class NodeBasedEditor : EditorWindow
         ProcessNodeEvents(Event.current);
         ProcessEvents(Event.current);
 
+        DrawNodeDetailPanel();
+        DrawResizer();
+
         if (GUI.changed)
             Repaint();
+    }
+
+    private void DrawResizer()
+    {
+        resizer = new Rect((position.width * sizeRatio) - 5f, 0, 5, position.height);
+
+        GUILayout.BeginArea(new Rect(resizer.position + (Vector2.up * 5f), new Vector2(2, position.height)), resizerStyle);
+        GUILayout.EndArea();
+
+        EditorGUIUtility.AddCursorRect(resizer, MouseCursor.ResizeHorizontal);
+    }
+
+    private void DrawNodeDetailPanel()
+    {
+        nodeDetailRect = new Rect((position.width * sizeRatio), 0, position.width * (1 - sizeRatio), position.height);
+
+        Texture2D tex;
+        tex = new Texture2D(1, 1, TextureFormat.RGBA32, false);
+        tex.SetPixel(0, 0, new Color(0.25f, 0.4f, 0.25f));
+        tex.Apply();
+        
+        GUI.DrawTexture(nodeDetailRect, tex, ScaleMode.StretchToFill);
+        GUILayout.BeginArea(nodeDetailRect);
+        GUILayout.Label("Node details");
+        GUILayout.EndArea();
     }
 
     private void DrawGrid(float gridSpacing, float gridOpacity, Color gridColor)
@@ -174,11 +214,38 @@ public class NodeBasedEditor : EditorWindow
                 break;
 
             case EventType.MouseDrag:
-                if (e.button == 0)
+                if (e.button == 0 && !resizer.Contains(e.mousePosition) && isResizing == false)
                 {
                     OnDrag(e.delta);
                 }
+
+                if (e.button == 0 && resizer.Contains(e.mousePosition) && isResizing == false)
+                {
+                    isResizing = true;
+                    Resize(e);
+                }
+
+                if (isResizing == true)
+                {
+                    Resize(e);
+                }
                 break;
+
+            case EventType.MouseUp:
+                if (isResizing == true)
+                {
+                    isResizing = false;
+                }
+                break;
+        }
+    }
+
+    private void Resize(Event e)
+    {
+        if (isResizing)
+        {
+            sizeRatio = e.mousePosition.x / position.width;
+            Repaint();
         }
     }
 
