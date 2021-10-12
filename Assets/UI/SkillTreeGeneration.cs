@@ -106,7 +106,7 @@ public class SkillTreeGeneration : MonoBehaviour
                 // We replace the entry on the dictionary with the new one (already unlocked)
                 _skills.Remove(id_Skill);
                 _skills.Add(id_Skill, _skillInspected);
-
+                saveSkillTree();
                 return true;
             }
             else
@@ -118,6 +118,31 @@ public class SkillTreeGeneration : MonoBehaviour
         {
             return false;   // The skill doesn't exist
         }
+    }
+
+    public void saveSkillTree()
+    {
+        SkillTree skillTree = new SkillTree();
+        skillTree.skilltree = new Skill[_skills.Count];
+        for(int i=0; i<_skills.Count; i++)
+        {
+            skillTree.skilltree[i] = _skills[i];
+        }
+        string json = JsonUtility.ToJson(skillTree);
+        string path = null;
+
+        path = "Assets/SkillTree/Data/skilltree.json";
+
+        // Finally, we write the JSON string with the SkillTree data in our file
+        using (FileStream fs = new FileStream(path, FileMode.Create))
+        {
+            using (StreamWriter writer = new StreamWriter(fs))
+            {
+                writer.Write(json);
+            }
+        }
+        parent.parent.GetComponent<SkillTreeReader>().SetUpSkillTree();
+        UnityEditor.AssetDatabase.Refresh();
     }
 
     public bool IsSkillUnlocked(int id_skill)

@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (SkillTreeGeneration.Instance.IsSkillUnlocked(1))
+        if (SkillTreeReader.Instance.IsSkillUnlocked(1))
         {
             jumpSpeed = baseJumpSpeed * 2f;
         }
