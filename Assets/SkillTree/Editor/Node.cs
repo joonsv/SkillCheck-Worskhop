@@ -113,6 +113,7 @@ public class Node
         skill.unlocked = unlocked;
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
+        skill.image = "images/" + id;
         
 
         // Create string with ID info
@@ -173,8 +174,9 @@ public class Node
 
         GUI.Label(rectNameLabel, "Name: ", styleField);
         skill.name = GUI.TextField(rectName, skill.name);
-
         
+        
+       
         
     }
 
