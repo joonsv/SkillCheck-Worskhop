@@ -34,7 +34,7 @@ public class NodeBasedEditor : EditorWindow
     private Dictionary<int, Skill> skillDictionary;
 
     //length and width of a node
-    private float nodeHeight = 250;
+    private float nodeHeight = 150;
     private float nodeWidth = 250;
     
 

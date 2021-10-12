@@ -113,6 +113,7 @@ public class Node
         skill.unlocked = unlocked;
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
+        skill.image = "images/" + id;
         
 
         // Create string with ID info
@@ -132,8 +133,7 @@ public class Node
         rectCostLabel.position += delta;
         rectNameLabel.position += delta;
         rectName.position += delta;
-        rectImageLabel.position += delta;
-        rectImage.position += delta;
+        
     }
 
     public void MoveTo(Vector2 pos)
@@ -174,9 +174,9 @@ public class Node
 
         GUI.Label(rectNameLabel, "Name: ", styleField);
         skill.name = GUI.TextField(rectName, skill.name);
-
-        GUI.Label(rectImageLabel, "Image: ", styleField);
-        GUI.Window(0, rectImage, WindowFunction, skill.image);
+        
+        
+       
         
     }
 

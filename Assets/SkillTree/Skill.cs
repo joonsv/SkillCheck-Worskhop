@@ -7,5 +7,5 @@ public class Skill {
     public int[] skill_Dependencies;
     public bool unlocked;
     public int cost;
-    public Texture image;
+    public string image;
 }
