@@ -11,6 +11,11 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float MinCameraRotation;
     [SerializeField] private float MaxCameraRotation;
     [SerializeField] private float JumpHeight;
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform shootingPoint;
+    [SerializeField] private float maxCubes = 3;
+    [SerializeField] private float shootingSpeed = 100;
+    [SerializeField] private float rotationSpeed = 10;
 
     private float horizontal;
     private float vertical;
@@ -22,8 +27,10 @@ public class FirstPersonPlayerController : MonoBehaviour
     private Quaternion QuatMinRotation;
 
     private bool isGrounded;
+    private bool fire = false;
 
     private Rigidbody rbody;
+    private Rigidbody ProjectileRBody;
     private Camera _cameraTransform;
 
     public object RangeStatus { get; private set; }
@@ -32,6 +39,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody>();
         _cameraTransform = Camera.main;
+        ProjectileRBody = projectile.GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -71,6 +79,25 @@ public class FirstPersonPlayerController : MonoBehaviour
         {
             Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
             rbody.AddForce(Jump, ForceMode.Impulse);
+        }
+    }
+
+    private void OnFire()
+    {
+        if (GameObject.FindGameObjectsWithTag("projectile").Length < maxCubes)
+        {
+            fire = !fire;
+        }
+        if (fire)
+        {
+            fire = !fire;
+            Rigidbody projectileInstance;
+            projectileInstance =
+                Instantiate(ProjectileRBody,
+                shootingPoint.position,
+                shootingPoint.rotation);
+            projectileInstance.AddForce(shootingSpeed * shootingPoint.forward);
+            projectileInstance.AddRelativeTorque(0, rotationSpeed, 0);
         }
     }
 
