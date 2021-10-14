@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1567,63 +1567,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb8c9286b5866d74db62c746c1ae2d1e, type: 3}
---- !u!1001 &878616642
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7456801803046233356, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.6046715
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.787783
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7456801803046233590, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 375cb166ad1cc264a8762d71be38e3c8, type: 3}
 --- !u!1001 &955029931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3499,16 +3442,16 @@ PrefabInstance:
       value: L-Player
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
-      propertyPath: mainMenu
-      value: 
-      objectReference: {fileID: 1578425935}
-    - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: DashTime
       value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 1578425935}
+    - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: maxCubes
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: DashForce
@@ -3524,7 +3467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: DashDistance
-      value: 4
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: DashStopSpeed
