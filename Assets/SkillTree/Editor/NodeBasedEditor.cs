@@ -159,7 +159,7 @@ public class NodeBasedEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            selectedNode.unlocked = EditorGUILayout.Toggle("Unlocked?", selectedSkill.unlocked);
+            selectedSkill.unlocked = EditorGUILayout.Toggle("Unlocked?", selectedSkill.unlocked);
             EditorGUILayout.EndHorizontal();
         }
         GUILayout.EndArea();

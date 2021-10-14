@@ -80,9 +80,15 @@ public class SkillTreeGeneration : MonoBehaviour
                     v3 = new Vector3(v3.x, v3.y / -1);
                     skillButton.name = "skillButton" + i;
                     skillButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _skillTree[i].name ;
-                    if (Resources.Load<Sprite>(_skillTree[i].image) != null) { 
+                    
+                        if (File.Exists("Assets/Resources/"+_skillTree[i].image+ ".png")) 
+                        { 
                         skillButton.transform.GetChild(0).GetComponent<Image>().sprite= Resources.Load<Sprite>(_skillTree[i].image);
-                    }
+                        }
+                            else
+                            {
+                            skillButton.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/default");
+                            }
                     //circumvent closure
                     int tempvar = i;
                     //convert to same location as in editor
