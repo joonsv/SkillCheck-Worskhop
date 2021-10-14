@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "78a6c6d6-8e41-4783-a38f-c7f71c088337",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "64760f42-444a-4841-a0ae-11df182de791",
@@ -305,6 +313,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa0cb3da-590b-403f-90c2-2f2edb408595",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

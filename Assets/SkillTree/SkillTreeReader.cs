@@ -44,7 +44,7 @@ public class SkillTreeReader : MonoBehaviour {
     }
 
 	// Use this for initialization of the skill tree
-	void SetUpSkillTree ()
+	public void SetUpSkillTree ()
     {
         _skills = new Dictionary<int, Skill>();
 
