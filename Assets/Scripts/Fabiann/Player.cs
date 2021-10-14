@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+
+
+    private int xpPoints;
+    //vraag script op van skkilltreereader -> 
     [SerializeField] private int DebugValue;
     [SerializeField] private float Speed;
 
@@ -58,5 +62,19 @@ public class Player : MonoBehaviour
         }
 
 
+    }
+    public void xpGain(int xpAmount)
+    {
+        xpPoints += xpAmount;
+        //resterende xp gaat verloren nu
+        Debug.Log("xpGain()");
+        Debug.Log("xpPoints: " + xpPoints);
+        Debug.Log("skillPoints: " + skillPoints);
+
+        if (xpPoints >= 10)
+        {
+            xpPoints = 0;
+            skillPoints += 1;
+        }
     }
 }

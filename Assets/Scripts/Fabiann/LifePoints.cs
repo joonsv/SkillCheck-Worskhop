@@ -5,9 +5,13 @@ using UnityEngine;
 public class LifePoints : MonoBehaviour
 {
     [SerializeField] int hitPoints;
+    [SerializeField] int enemyXP;
+    private Player playerScript;
     void Start()
     {
-        
+        GameObject player = GameObject.Find("Player");
+        playerScript =   player.GetComponent<Player>();
+       
     }
 
     // Update is called once per frame
@@ -17,6 +21,26 @@ public class LifePoints : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("L-Projectyle"))
+        {
+            OnHit();
+        }
+        //met bullet tag gaat hp var naar beneden
+        //als hp == 0; destory && xp += 1
+
+    }
+    private void OnHit()
+    {
+        Debug.Log("OnHit()");
+
+        hitPoints -= 1;
+        Debug.Log("hitPoints enemy: "+ hitPoints);
+
+        if (hitPoints <= 0)
+
+        {
+            playerScript.xpGain(enemyXP);
+            Destroy(gameObject);
+        }
     }
 }
