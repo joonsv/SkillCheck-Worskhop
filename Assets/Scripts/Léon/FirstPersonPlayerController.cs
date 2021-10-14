@@ -20,6 +20,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float SuperJumpModifier = 2;
     [SerializeField] private float MaxDashTime = 0.4f;
     [SerializeField] private float DashDistance = 20f;
+    [SerializeField] private GameObject mainMenu;
 
     [SerializeField] private bool JumpIsUnlocked;
     [SerializeField] private bool DoubleJumpIsUnlocked;
@@ -123,6 +124,21 @@ public class FirstPersonPlayerController : MonoBehaviour
             Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
             rbody.AddForce(Jump, ForceMode.Impulse);
             DoubleJump = false;
+        }
+    }
+    private void OnMenu()
+    {
+        print("dasd");
+        if (mainMenu != null)
+        {
+            if (!mainMenu.activeSelf)
+            {
+                mainMenu.SetActive(true);
+            }
+            else
+            {
+                mainMenu.SetActive(false);
+            }
         }
     }
 
