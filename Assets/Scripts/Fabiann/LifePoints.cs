@@ -6,11 +6,11 @@ public class LifePoints : MonoBehaviour
 {
     [SerializeField] int hitPoints;
     [SerializeField] int enemyXP;
-    private Player playerScript;
+    private RegulatorXP xpRegulator;
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerScript =  player.GetComponent<Player>();
+        xpRegulator =  player.GetComponent<RegulatorXP>();
        
     }
 
@@ -31,15 +31,15 @@ public class LifePoints : MonoBehaviour
     }
     private void OnHit()
     {
-        Debug.Log("OnHit()");
+        //Debug.Log("OnHit()");
 
         hitPoints -= 1;
-        Debug.Log("hitPoints enemy: "+ hitPoints);
+        //Debug.Log("hitPoints enemy: "+ hitPoints);
 
         if (hitPoints <= 0)
 
         {
-            playerScript.xpGain(enemyXP);
+            xpRegulator.xpGain(enemyXP);
             Destroy(gameObject);
         }
     }
