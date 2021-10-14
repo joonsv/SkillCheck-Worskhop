@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb88aafb59b1ae40820431af55d4d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 2061679839}
+  skillButton: {fileID: 2061679839}
   parent: {fileID: 236998612}
+  availablePoints: 100
 --- !u!224 &236998612 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1195117766601239881, guid: 8a6d358863dd3374e9964cde9fee3422, type: 3}
