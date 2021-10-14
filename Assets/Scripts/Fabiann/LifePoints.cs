@@ -9,8 +9,8 @@ public class LifePoints : MonoBehaviour
     private Player playerScript;
     void Start()
     {
-        GameObject player = GameObject.Find("Player");
-        playerScript =   player.GetComponent<Player>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerScript =  player.GetComponent<Player>();
        
     }
 
@@ -21,7 +21,7 @@ public class LifePoints : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("L-Projectyle"))
+        if (collision.gameObject.CompareTag("Projectile"))
         {
             OnHit();
         }
