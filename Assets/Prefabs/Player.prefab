@@ -320,13 +320,14 @@ MonoBehaviour:
   JumpHeight: 7
   projectile: {fileID: 1449813262689956134, guid: 2a5cb5952ec828944b7c6402c9a2390b, type: 3}
   shootingPoint: {fileID: 7800870958503815330}
-  maxCubes: 3
+  DefaultmaxCubes: 3
   LargeMagazineMaxCubes: 10
-  shootingSpeed: 100
+  shootingSpeed: 1500
   rotationSpeed: 10
   SuperJumpModifier: 2
   MaxDashTime: 0.4
   DashDistance: 20
+  mainMenu: {fileID: 6009652684824840002, guid: e850abb9d764d0f49859e8fe5042606d, type: 3}
   JumpIsUnlocked: 0
   DoubleJumpIsUnlocked: 0
   SuperJumpIsUnlocked: 0

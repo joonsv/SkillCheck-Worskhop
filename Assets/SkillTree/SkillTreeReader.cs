@@ -27,7 +27,7 @@ public class SkillTreeReader : MonoBehaviour {
     // Variable for caching the currently being inspected skill
     private Skill _skillInspected;
 
-    public int availablePoints = 100;
+    public int availablePoints = 0;
 
     void Awake()
     {
@@ -51,12 +51,6 @@ public class SkillTreeReader : MonoBehaviour {
         LoadSkillTree();
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     public void LoadSkillTree()
     {
         string path = "Assets/SkillTree/Data/skilltree.json";
