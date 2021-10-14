@@ -13,7 +13,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float JumpHeight = 7;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform shootingPoint;
-    [SerializeField] private int maxCubes = 3;
+    [SerializeField] private int DefaultmaxCubes = 3;
     [SerializeField] private int LargeMagazineMaxCubes = 10;
     [SerializeField] private float shootingSpeed = 100;
     [SerializeField] private float rotationSpeed = 10;
@@ -27,7 +27,8 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private bool SuperJumpIsUnlocked;
     [SerializeField] private bool DashIsUnlocked;
     [SerializeField] private bool LargeMagazineIsUnlocked;
-    
+
+    private int maxCubes;
     private float horizontal;
     private float vertical;
     private float mouseX;
@@ -53,6 +54,7 @@ public class FirstPersonPlayerController : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         _cameraTransform = Camera.main;
         ProjectileRBody = projectile.GetComponent<Rigidbody>();
+        maxCubes = DefaultmaxCubes;
     }
 
     private void Update()
@@ -159,6 +161,10 @@ public class FirstPersonPlayerController : MonoBehaviour
             if (LargeMagazineIsUnlocked)
             {
                 maxCubes = LargeMagazineMaxCubes;
+            }
+            else
+            {
+                maxCubes = DefaultmaxCubes;
             }
         }
         if (fire)
