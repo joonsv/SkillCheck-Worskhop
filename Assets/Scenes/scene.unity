@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb88aafb59b1ae40820431af55d4d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 2061679839}
+  skillButton: {fileID: 2061679839}
   parent: {fileID: 236998612}
+  availablePoints: 100
 --- !u!224 &236998612 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1195117766601239881, guid: 8a6d358863dd3374e9964cde9fee3422, type: 3}
@@ -163,6 +164,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8159ea86497e3f24dba14a6412acc871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &542776833 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6685137045181151447, guid: e22adfe8be3826942b6299f973c9129e, type: 3}
+  m_PrefabInstance: {fileID: 663191537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &542776834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +465,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 542776833}
     m_Modifications:
     - target: {fileID: 1195117766013137906, guid: 8a6d358863dd3374e9964cde9fee3422, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -487,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1195117766601239881, guid: 8a6d358863dd3374e9964cde9fee3422, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1195117766601239881, guid: 8a6d358863dd3374e9964cde9fee3422, type: 3}
       propertyPath: m_AnchorMax.x
