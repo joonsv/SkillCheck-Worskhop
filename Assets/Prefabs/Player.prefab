@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 9060381643137799099}
   - component: {fileID: 5036115249255523168}
   - component: {fileID: 3966191171664027286}
+  - component: {fileID: -2360647485087563942}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -324,12 +325,25 @@ MonoBehaviour:
   shootingSpeed: 0.000001
   rotationSpeed: 10
   SuperJumpModifier: 2
-  MaxDashTime: 0.4
-  DashDistance: 20
+  MaxDashTime: 0
+  DashDistance: 0
   JumpIsUnlocked: 0
   DoubleJumpIsUnlocked: 0
   SuperJumpIsUnlocked: 0
   DashIsUnlocked: 0
+--- !u!114 &-2360647485087563942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016803654052662713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a35f234e08c3a409d2809c637208fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breadCrumbXP: 2
   LargeMagazineIsUnlocked: 0
 --- !u!1 &6944170736063895206
 GameObject:
