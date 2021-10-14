@@ -20,7 +20,7 @@ public class MoveEnemy : MonoBehaviour
     {
         Vector3 destination = origin;
         destination.y = (transform.position.y > origin.y + maxMoveDistance) ? origin.y : origin.y + maxMoveDistance;
-        destination.y = (transform.position.x > origin.x + maxMoveDistance) ? origin.x : origin.x + maxMoveDistance;
+        //destination.y = (transform.position.x > origin.x + maxMoveDistance) ? origin.x : origin.x + maxMoveDistance;
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
     }
 }
