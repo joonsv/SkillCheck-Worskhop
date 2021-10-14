@@ -6,19 +6,19 @@ using UnityEngine.InputSystem;
 
 public class FirstPersonPlayerController : MonoBehaviour
 {
-    [SerializeField, Range(10f, 100f)] private float mouseSensitivity = 70f; 
-    [SerializeField] private float WalkSpeed;
-    [SerializeField] private float MinCameraRotation;
-    [SerializeField] private float MaxCameraRotation;
-    [SerializeField] private float JumpHeight;
+    [SerializeField, Range(10f, 100f)] private float mouseSensitivity = 40f; 
+    [SerializeField] private float WalkSpeed = 10;
+    [SerializeField] private float MinCameraRotation = -90;
+    [SerializeField] private float MaxCameraRotation = 90;
+    [SerializeField] private float JumpHeight = 7;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private float maxCubes = 3;
     [SerializeField] private float shootingSpeed = 100;
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private float SuperJumpModifier = 2;
-    [SerializeField] private float MaxDashTime;
-    [SerializeField] private float DashDistance;
+    [SerializeField] private float MaxDashTime = 0.4f;
+    [SerializeField] private float DashDistance = 4.0f;
 
     [SerializeField] private bool JumpIsUnlocked;
     [SerializeField] private bool DoubleJumpIsUnlocked;
