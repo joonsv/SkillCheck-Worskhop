@@ -16,16 +16,26 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float maxCubes = 3;
     [SerializeField] private float shootingSpeed = 100;
     [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] private float SuperJumpModifier = 2;
+    [SerializeField] private float MaxDashTime;
+    [SerializeField] private float DashDistance;
 
+    [SerializeField] private bool JumpIsUnlocked;
+    [SerializeField] private bool DoubleJumpIsUnlocked;
+    [SerializeField] private bool SuperJumpIsUnlocked;
+    [SerializeField] private bool DashIsUnlocked;
+    
     private float horizontal;
     private float vertical;
     private float mouseX;
     private float mouseY;
     private Vector3 deltaPostition;
+    private Vector3 DashMoveDirection;
     private Quaternion deltaRotation;
     private Quaternion QuatMaxRotation;
     private Quaternion QuatMinRotation;
 
+    private bool DoubleJump;
     private bool isGrounded;
     private bool fire = false;
 
@@ -75,9 +85,50 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void OnJump()
     {
+        if (JumpIsUnlocked)
+        {
+            NormalJump();
+        }
+        if (DoubleJumpIsUnlocked)
+        {
+            MidAirJump();
+        }
+    }
+
+    private void OnSuperJump()
+    {
+        if (SuperJumpIsUnlocked)
+        {
+            SuperJump();
+        }
+    }
+
+    private void NormalJump()
+    {
         if (isGrounded)
         {
             Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
+            rbody.AddForce(Jump, ForceMode.Impulse);
+        }
+    }
+
+    private void MidAirJump()
+    {
+        //Debug.Log("Double Jump attempt");
+        if (DoubleJump == true && isGrounded == false)
+        {
+            //Debug.Log("Succes");
+            Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
+            rbody.AddForce(Jump, ForceMode.Impulse);
+            DoubleJump = false;
+        }
+    }
+
+    private void SuperJump()
+    {
+        if (isGrounded)
+        {
+            Vector3 Jump = new Vector3(0.0f, JumpHeight*SuperJumpModifier, 0.0f);
             rbody.AddForce(Jump, ForceMode.Impulse);
         }
     }
@@ -101,6 +152,27 @@ public class FirstPersonPlayerController : MonoBehaviour
         }
     }
 
+    private void OnDash()
+    {
+        if (DashIsUnlocked)
+        {
+            Dash();
+        }
+    }
+
+    private void Dash()
+    {
+        rbody.constraints |= RigidbodyConstraints.FreezePositionY;
+        rbody.velocity = rbody.transform.forward * DashDistance;
+        Invoke("StopDash", MaxDashTime);
+    }
+
+    private void StopDash()
+    {
+        rbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        rbody.velocity = Vector3.zero;
+    }
+
     private void CameraHandler()
     {
         if (_cameraTransform.transform.rotation.x >= MaxCameraRotation && mouseY > 0)
@@ -118,19 +190,12 @@ public class FirstPersonPlayerController : MonoBehaviour
         _cameraTransform.transform.eulerAngles = new Vector3(_cameraTransform.transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Surface"))
-        {
-            isGrounded = true;
-        }
-    }
-
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Surface"))
         {
             isGrounded = true;
+            DoubleJump = true;
         }
     }
 
