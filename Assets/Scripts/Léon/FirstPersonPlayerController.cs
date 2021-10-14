@@ -16,6 +16,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float maxCubes = 3;
     [SerializeField] private float shootingSpeed = 100;
     [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] private GameObject mainMenu;
 
     private float horizontal;
     private float vertical;
@@ -79,6 +80,22 @@ public class FirstPersonPlayerController : MonoBehaviour
         {
             Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
             rbody.AddForce(Jump, ForceMode.Impulse);
+        }
+    }
+
+    private void OnMenu()
+    {
+        print("dasd");
+        if (mainMenu != null)
+        {
+            if (!mainMenu.activeSelf)
+            {
+                mainMenu.SetActive(true);
+            }
+            else
+            {
+                mainMenu.SetActive(false);
+            }
         }
     }
 
