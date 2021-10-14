@@ -81,7 +81,7 @@ public class SkillTreeGeneration : MonoBehaviour
                     skillButton.name = "skillButton" + i;
                     skillButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _skillTree[i].name ;
                     
-                        if (File.Exists("Assets/Resources/"+_skillTree[i].image+ ".png")) 
+                        if (File.Exists("Assets/Resources/"+_skillTree[i].image+ ".png")| File.Exists("Assets/Resources/" + _skillTree[i].image + ".jpg")) 
                         { 
                         skillButton.transform.GetChild(0).GetComponent<Image>().sprite= Resources.Load<Sprite>(_skillTree[i].image);
                         }
