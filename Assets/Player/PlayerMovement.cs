@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject MainMenu;
+
+    bool openMenu = false;
+
     Vector2 moveDirection;
 
     bool jumping = false;
@@ -116,8 +120,35 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnToggleMenu()
+    {
+        print("runs");
+        openMenu = !openMenu;
+    }
+
+    public void ToggleMenu()
+    {
+        if (openMenu)
+        {
+            openMenu = !openMenu;
+            if (MainMenu != null)
+            {
+                if (!MainMenu.activeSelf)
+                {
+                    MainMenu.SetActive(true);
+                }
+                else
+                {
+                    MainMenu.SetActive(false);
+                }
+            }
+        }
+    }
+
+
     void Update()
     {
+        ToggleMenu();
         Jump();
         Fire();
     }
