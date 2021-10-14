@@ -162,7 +162,7 @@ public class Node
         
         // Print the unlock field
         GUI.Label(rectUnlockLabel, "Unlocked: ", styleField);
-        if (GUI.Toggle(rectUnlocked, unlocked, ""))
+        if (GUI.Toggle(rectUnlocked, skill.unlocked, ""))
             unlocked = true;
         else
             unlocked = false;
