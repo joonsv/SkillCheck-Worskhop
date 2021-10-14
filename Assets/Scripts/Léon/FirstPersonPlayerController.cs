@@ -13,17 +13,19 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float JumpHeight = 7;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform shootingPoint;
-    [SerializeField] private float maxCubes = 3;
+    [SerializeField] private int maxCubes = 3;
+    [SerializeField] private int LargeMagazineMaxCubes = 10;
     [SerializeField] private float shootingSpeed = 100;
     [SerializeField] private float rotationSpeed = 10;
     [SerializeField] private float SuperJumpModifier = 2;
     [SerializeField] private float MaxDashTime = 0.4f;
-    [SerializeField] private float DashDistance = 4.0f;
+    [SerializeField] private float DashDistance = 20f;
 
     [SerializeField] private bool JumpIsUnlocked;
     [SerializeField] private bool DoubleJumpIsUnlocked;
     [SerializeField] private bool SuperJumpIsUnlocked;
     [SerializeField] private bool DashIsUnlocked;
+    [SerializeField] private bool LargeMagazineIsUnlocked;
     
     private float horizontal;
     private float vertical;
@@ -135,9 +137,13 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void OnFire()
     {
-        if (GameObject.FindGameObjectsWithTag("projectile").Length < maxCubes)
+        if (GameObject.FindGameObjectsWithTag("Projectile").Length < maxCubes)
         {
             fire = !fire;
+            if (LargeMagazineIsUnlocked)
+            {
+                maxCubes = LargeMagazineMaxCubes;
+            }
         }
         if (fire)
         {

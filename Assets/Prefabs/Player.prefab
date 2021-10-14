@@ -320,17 +320,17 @@ MonoBehaviour:
   projectile: {fileID: 1449813262689956134, guid: 2a5cb5952ec828944b7c6402c9a2390b, type: 3}
   shootingPoint: {fileID: 7800870958503815330}
   maxCubes: 3
+  LargeMagazineMaxCubes: 10
   shootingSpeed: 0.000001
   rotationSpeed: 10
   SuperJumpModifier: 2
-  MaxDashTime: 0
-  DashDistance: 0
-  DashStopSpeed: 0
-  DashSpeed: 0
+  MaxDashTime: 0.4
+  DashDistance: 20
   JumpIsUnlocked: 0
   DoubleJumpIsUnlocked: 0
   SuperJumpIsUnlocked: 0
   DashIsUnlocked: 0
+  LargeMagazineIsUnlocked: 0
 --- !u!1 &6944170736063895206
 GameObject:
   m_ObjectHideFlags: 0
