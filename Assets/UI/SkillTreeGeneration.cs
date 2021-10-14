@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
+using LitJson;
 
 
 public class SkillTreeGeneration : MonoBehaviour
@@ -79,7 +80,7 @@ public class SkillTreeGeneration : MonoBehaviour
                     Vector3 v3 = loadedData.nodeDataCollection[i].position;
                     v3 = new Vector3(v3.x, v3.y / -1);
                     skillButton.name = "skillButton" + i;
-                    skillButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "skill" + i;
+                    skillButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = _skillTree[i].name ;
                     //circumvent closure
                     int tempvar = i;
                     //convert to same location as in editor
