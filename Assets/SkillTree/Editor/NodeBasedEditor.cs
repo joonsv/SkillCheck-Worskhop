@@ -13,6 +13,8 @@ public class NodeBasedEditor : EditorWindow
     private Rect resizer;
     private GUIStyle resizerStyle;
     private bool isResizing;
+    private Node selectedNode;
+    private GUIStyle detailPanelStyle;
 
     private float sizeRatio = 0.7f;
     private List<Connection> connections;
@@ -43,15 +45,15 @@ public class NodeBasedEditor : EditorWindow
     private Dictionary<int, Skill> skillDictionary;
 
     //length and width of a node
-    private float nodeHeight = 150;
-    private float nodeWidth = 250;
+    private float nodeHeight = 210;
+    private float nodeWidth = 160;
     
 
-    [MenuItem("Window/Node Based Editor")]
+    [MenuItem("Window/SkillTreeGen")]
     private static void OpenWindow()
     {
         NodeBasedEditor window = GetWindow<NodeBasedEditor>();
-        window.titleContent = new GUIContent("Node Based Editor");
+        window.titleContent = new GUIContent("Skill Tree Generator");
     }
 
     private void OnEnable()
@@ -82,8 +84,23 @@ public class NodeBasedEditor : EditorWindow
         rectButtonSave = new Rect(new Vector2(80, 10), new Vector2(60, 20));
         rectButtonLoad = new Rect(new Vector2(150, 10), new Vector2(60, 20));
 
+        //Resizer for detailPanel
         resizerStyle = new GUIStyle();
         resizerStyle.normal.background = EditorGUIUtility.Load("icons/d_AvatarBlendBackground.png") as Texture2D;
+
+        //Style for detailpanel
+        Texture2D tex;
+        var fillColor = Color.grey;
+        tex = new Texture2D((int)position.width, (int)position.height, TextureFormat.RGBA32, false);
+        var fillColorArray = new Color[tex.width * tex.height];
+        for(var i = 0; i < fillColorArray.Length; ++i)
+        {
+            fillColorArray[i] = fillColor;
+        }
+        tex.SetPixels(fillColorArray);
+        tex.Apply();
+        detailPanelStyle = new GUIStyle();
+        detailPanelStyle.normal.background = tex;
 
         // Initialize nodes with saved data
         LoadNodes();
@@ -124,16 +141,32 @@ public class NodeBasedEditor : EditorWindow
 
     private void DrawNodeDetailPanel()
     {
+        
         nodeDetailRect = new Rect((position.width * sizeRatio), 0, position.width * (1 - sizeRatio), position.height);
 
-        Texture2D tex;
-        tex = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-        tex.SetPixel(0, 0, new Color(0.25f, 0.4f, 0.25f));
-        tex.Apply();
-        
-        GUI.DrawTexture(nodeDetailRect, tex, ScaleMode.StretchToFill);
-        GUILayout.BeginArea(nodeDetailRect);
+        GUILayout.BeginArea(nodeDetailRect, detailPanelStyle);
         GUILayout.Label("Node details");
+        if (selectedNode != null) 
+        {
+            Skill selectedSkill = selectedNode.skill;
+
+            EditorGUILayout.BeginHorizontal();
+            selectedSkill.name = EditorGUILayout.TextField("Name", selectedSkill.name);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            selectedSkill.cost = EditorGUILayout.IntField("Cost", selectedSkill.cost);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            selectedSkill.unlocked = EditorGUILayout.Toggle("Unlocked?", selectedSkill.unlocked);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Skill Image");
+            selectedSkill.Image_sprite = (Sprite)EditorGUILayout.ObjectField(selectedSkill.Image_sprite, typeof(Sprite), allowSceneObjects: true);
+            EditorGUILayout.EndHorizontal();
+        }
         GUILayout.EndArea();
     }
 
@@ -238,6 +271,13 @@ public class NodeBasedEditor : EditorWindow
                 }
                 break;
         }
+
+        for (int i = 0; i < nodes.Count; i++)
+            {
+                if (nodes[i].isSelected == true) {
+                    selectedNode = nodes[i];
+                }
+            }
     }
 
     private void Resize(Event e)
@@ -331,7 +371,7 @@ public class NodeBasedEditor : EditorWindow
         // We create the node with the default info for the node
         nodes.Add(new Node(mousePosition, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode,
-            "new_name",nodeCount, false, 0, null));
+            "new_name",nodeCount, false, 0, null,null));
         ++nodeCount;
     }
 
@@ -609,7 +649,7 @@ public class NodeBasedEditor : EditorWindow
 
         nodes.Add(new Node(position, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, 
-            skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies));
+            skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies,skill.Image_sprite));
         ++nodeCount;
     }
 }
