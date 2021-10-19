@@ -114,6 +114,7 @@ public class Node
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
         skill.image = "images/" + id;
+        skill.Image_sprite= Resources.Load<Sprite>("Images/default");
 
 
 

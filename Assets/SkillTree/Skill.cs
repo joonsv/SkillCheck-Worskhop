@@ -8,4 +8,5 @@ public class Skill {
     public bool unlocked;
     public int cost;
     public string image;
+    public Sprite Image_sprite;
 }

@@ -161,6 +161,11 @@ public class NodeBasedEditor : EditorWindow
             EditorGUILayout.BeginHorizontal();
             selectedSkill.unlocked = EditorGUILayout.Toggle("Unlocked?", selectedSkill.unlocked);
             EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Skill Image");
+            selectedSkill.Image_sprite = (Sprite)EditorGUILayout.ObjectField(selectedSkill.Image_sprite, typeof(Sprite), allowSceneObjects: true);
+            EditorGUILayout.EndHorizontal();
         }
         GUILayout.EndArea();
     }
