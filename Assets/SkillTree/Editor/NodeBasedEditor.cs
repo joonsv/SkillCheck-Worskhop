@@ -371,7 +371,7 @@ public class NodeBasedEditor : EditorWindow
         // We create the node with the default info for the node
         nodes.Add(new Node(mousePosition, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode,
-            "new_name",nodeCount, false, 0, null));
+            "new_name",nodeCount, false, 0, null,null));
         ++nodeCount;
     }
 
@@ -649,7 +649,7 @@ public class NodeBasedEditor : EditorWindow
 
         nodes.Add(new Node(position, nodeWidth, nodeHeight, nodeStyle, selectedNodeStyle,
             inPointStyle, outPointStyle, OnClickInPoint, OnClickOutPoint, OnClickRemoveNode, 
-            skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies));
+            skill.name ,skill.id_Skill, skill.unlocked, skill.cost, skill.skill_Dependencies,skill.Image_sprite));
         ++nodeCount;
     }
 }

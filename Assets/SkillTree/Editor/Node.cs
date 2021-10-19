@@ -56,7 +56,7 @@ public class Node
     public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, 
         GUIStyle selectedStyle, GUIStyle inPointStyle, GUIStyle outPointStyle, 
         Action<ConnectionPoint> OnClickInPoint, Action<ConnectionPoint> OnClickOutPoint,
-        Action<Node> OnClickRemoveNode, string name, int id, bool unlocked, int cost, int[] dependencies)
+        Action<Node> OnClickRemoveNode, string name, int id, bool unlocked, int cost, int[] dependencies,Sprite sprite_image)
     {
         rect = new Rect(position.x, position.y, width, height);
         style = nodeStyle;
@@ -114,7 +114,7 @@ public class Node
         skill.cost = cost;
         skill.skill_Dependencies = dependencies;
         skill.image = "images/" + id;
-        skill.Image_sprite= Resources.Load<Sprite>("Images/default");
+        skill.Image_sprite= sprite_image;
 
 
 
