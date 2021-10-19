@@ -160,7 +160,8 @@ public class Node
 
         // Print the title
         GUI.Label(rectID, nodeTitle.ToString(), styleID);
-        
+        GUI.Label(rectNameLabel, skill.name.ToString(), styleField);
+
         // Print the unlock field
         GUI.Label(rectUnlockLabel, "Unlocked: ", styleField);
         if (GUI.Toggle(rectUnlocked, skill.unlocked, ""))
@@ -174,12 +175,12 @@ public class Node
         GUI.Label(rectCostLabel, "Cost: ", styleField);
         skill.cost = int.Parse(GUI.TextField(rectCost, skill.cost.ToString()));
 
-        GUI.Label(rectNameLabel, "Name: ", styleField);
-        skill.name = GUI.TextField(rectName, skill.name);
-        
-        
-       
-        
+        //GUI.Label(rectNameLabel, "Name: ", styleField);
+        //skill.name = GUI.TextField(rectName, skill.name);
+
+
+
+
     }
 
     public bool ProcessEvents(Event e)
