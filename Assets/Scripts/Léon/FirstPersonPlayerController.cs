@@ -20,6 +20,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float SuperJumpModifier = 2;
     [SerializeField] private float MaxDashTime = 0.4f;
     [SerializeField] private float DashDistance = 20f;
+    [SerializeField] private float DashCooldown = 2f;
     [SerializeField] private GameObject mainMenu;
 
     [SerializeField] private bool JumpIsUnlocked;
@@ -39,6 +40,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     private Quaternion QuatMaxRotation;
     private Quaternion QuatMinRotation;
 
+    private bool DashIsAvailable = true;
     private bool DoubleJump;
     private bool isGrounded;
     private bool fire = false;
@@ -128,6 +130,7 @@ public class FirstPersonPlayerController : MonoBehaviour
             DoubleJump = false;
         }
     }
+
     private void OnMenu()
     {
         print("dasd");
@@ -190,15 +193,25 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void Dash()
     {
-        rbody.constraints |= RigidbodyConstraints.FreezePositionY;
-        rbody.velocity = rbody.transform.forward * DashDistance;
-        Invoke("StopDash", MaxDashTime);
+        if (DashIsAvailable)
+        {
+            DashIsAvailable = false;
+            rbody.constraints |= RigidbodyConstraints.FreezePositionY;
+            rbody.velocity = rbody.transform.forward * DashDistance;
+            Invoke("StopDash", MaxDashTime);
+            Invoke("ResetDash", DashCooldown);
+        }
     }
 
     private void StopDash()
     {
         rbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rbody.velocity = Vector3.zero;
+    }
+
+    private void ResetDash()
+    {
+        DashIsAvailable = true;
     }
 
     private void CameraHandler()
