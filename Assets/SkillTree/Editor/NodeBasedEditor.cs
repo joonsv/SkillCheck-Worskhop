@@ -166,6 +166,12 @@ public class NodeBasedEditor : EditorWindow
             EditorGUILayout.PrefixLabel("Skill Image");
             selectedSkill.Image_sprite = (Sprite)EditorGUILayout.ObjectField(selectedSkill.Image_sprite, typeof(Sprite), allowSceneObjects: true);
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            if (selectedSkill.Image_sprite != null)
+            {
+                EditorGUI.DrawPreviewTexture(new Rect(155, 100, 100, 100), selectedSkill.Image_sprite.texture);
+            }
+            EditorGUILayout.EndHorizontal();
         }
         GUILayout.EndArea();
     }
