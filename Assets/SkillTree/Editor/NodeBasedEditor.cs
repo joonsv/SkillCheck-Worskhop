@@ -49,11 +49,11 @@ public class NodeBasedEditor : EditorWindow
     private float nodeWidth = 160;
     
 
-    [MenuItem("Window/Node Based Editor")]
+    [MenuItem("Window/SkillTreeGen")]
     private static void OpenWindow()
     {
         NodeBasedEditor window = GetWindow<NodeBasedEditor>();
-        window.titleContent = new GUIContent("Node Based Editor");
+        window.titleContent = new GUIContent("Skill Tree Generator");
     }
 
     private void OnEnable()
