@@ -22,6 +22,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float DashDistance = 20f;
     [SerializeField] private float DashCooldown = 2f;
     [SerializeField] private GameObject mainMenu;
+    private GameObject Reader;
 
     [SerializeField] private bool JumpIsUnlocked;
     [SerializeField] private bool DoubleJumpIsUnlocked;
@@ -48,6 +49,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     private Rigidbody rbody;
     private Rigidbody ProjectileRBody;
     private Camera _cameraTransform;
+    
 
     public object RangeStatus { get; private set; }
 
@@ -57,12 +59,17 @@ public class FirstPersonPlayerController : MonoBehaviour
         _cameraTransform = Camera.main;
         ProjectileRBody = projectile.GetComponent<Rigidbody>();
         maxCubes = DefaultmaxCubes;
+        Reader = gameObject;
+   
     }
 
     private void Update()
     {
         CameraHandler();
-        
+        JumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(0);
+        DashIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(1);
+        SuperJumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(2);
+
     }
 
     private void FixedUpdate()
