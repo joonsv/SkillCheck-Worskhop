@@ -19,8 +19,7 @@ public class FirstPersonPlayerController : Abilities
     [SerializeField] private bool DashIsUnlocked;
     [SerializeField] private bool FireIsUnlocked;
     [SerializeField] private bool LargeMagazineIsUnlocked;
-
-    private int maxCubes;
+    
     private float horizontal;
     private float vertical;
     private float mouseX;
@@ -30,14 +29,6 @@ public class FirstPersonPlayerController : Abilities
     private Quaternion deltaRotation;
     private Quaternion QuatMaxRotation;
     private Quaternion QuatMinRotation;
-
-    private bool DashIsAvailable = true;
-    private bool DoubleJump;
-    private bool isGrounded;
-    private bool fire = false;
-
-    private Rigidbody rbody;
-    private Rigidbody ProjectileRBody;
     private Camera _cameraTransform;
     
 
@@ -47,10 +38,7 @@ public class FirstPersonPlayerController : Abilities
     {
         rbody = GetComponent<Rigidbody>();
         _cameraTransform = Camera.main;
-        ProjectileRBody = projectile.GetComponent<Rigidbody>();
-        maxCubes = DefaultmaxCubes;
         Reader = gameObject;
-   
     }
 
     private void Update()
@@ -59,7 +47,6 @@ public class FirstPersonPlayerController : Abilities
         JumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(0);
         DashIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(1);
         SuperJumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(2);
-
     }
 
     private void FixedUpdate()

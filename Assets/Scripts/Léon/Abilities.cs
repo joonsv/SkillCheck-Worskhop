@@ -17,20 +17,19 @@ public class Abilities : MonoBehaviour
     [SerializeField] private float DashCooldown = 2f;
 
     private bool DashIsAvailable = true;
-    private bool DoubleJump;
-    private bool isGrounded;
+    protected bool DoubleJump;
+    protected bool isGrounded;
     private bool fire = false;
 
     private int maxCubes;
 
-    private Rigidbody rbody;
+    protected Rigidbody rbody;
     private Rigidbody ProjectileRBody;
 
-    private void Start()
+    private void OnEnable()
     {
         ProjectileRBody = projectile.GetComponent<Rigidbody>();
         maxCubes = DefaultmaxCubes;
-        rbody = GetComponent<Rigidbody>();
     }
 
     protected void NormalJump(bool JumpIsUnlocked)
