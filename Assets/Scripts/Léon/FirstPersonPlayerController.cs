@@ -60,6 +60,7 @@ public class FirstPersonPlayerController : Abilities
 
     void OnMove(InputValue movementValue)
     {
+        //This is bound to the "wasd" keys
         Vector2 movementVector = movementValue.Get<Vector2>();
 
         horizontal = movementVector.x;
@@ -68,6 +69,7 @@ public class FirstPersonPlayerController : Abilities
 
     void OnLook(InputValue MousveMovementValue)
     {
+        //This is bound to the mouse.
         Vector2 movementVector = MousveMovementValue.Get<Vector2>();
 
         mouseX = movementVector.x;
@@ -76,17 +78,20 @@ public class FirstPersonPlayerController : Abilities
 
     private void OnJump()
     {
+        //This is bound to the "Space" key.
         NormalJump(JumpIsUnlocked);
         MidAirJump(DoubleJumpIsUnlocked);
     }
 
     private void OnSuperJump()
     {
+        //This is currently bound to the 'R' key.
         SuperJump(SuperJumpIsUnlocked);
     }
 
     private void OnMenu()
     {
+        //This is bound to the "Esc" key.
         print("dasd");
         if (mainMenu != null)
         {
@@ -103,11 +108,13 @@ public class FirstPersonPlayerController : Abilities
 
     private void OnFire()
     {
+        //This is bound to the left mouse button.
         Fire(FireIsUnlocked, LargeMagazineIsUnlocked);
     }
 
     private void OnDash()
     {
+        //This is bound to the shift key
         Dash(DashIsUnlocked);
     }
 

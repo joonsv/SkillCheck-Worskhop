@@ -29,18 +29,13 @@ public class Abilities : MonoBehaviour
     private void OnEnable()
     {
         ProjectileRBody = projectile.GetComponent<Rigidbody>();
-        maxCubes = DefaultmaxCubes;
     }
 
     protected void NormalJump(bool JumpIsUnlocked)
     {
         if (JumpIsUnlocked)
         {
-            if (isGrounded)
-            {
-                Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
-                rbody.AddForce(Jump, ForceMode.Impulse);
-            }
+            //Make your own function
         }
     }
 
@@ -48,14 +43,7 @@ public class Abilities : MonoBehaviour
     {
         if (DoubleJumpIsUnlocked)
         {
-            //Debug.Log("Double Jump attempt");
-            if (DoubleJump == true && isGrounded == false)
-            {
-                //Debug.Log("Succes");
-                Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
-                rbody.AddForce(Jump, ForceMode.Impulse);
-                DoubleJump = false;
-            }
+            //Make your own function
         }
     }
 
@@ -63,11 +51,7 @@ public class Abilities : MonoBehaviour
     {
         if (SuperJumpIsUnlocked)
         {
-            if (isGrounded)
-            {
-                Vector3 Jump = new Vector3(0.0f, JumpHeight * SuperJumpModifier, 0.0f);
-                rbody.AddForce(Jump, ForceMode.Impulse);
-            }
+            //Make your own function
         }
     }
 
@@ -75,29 +59,7 @@ public class Abilities : MonoBehaviour
     {
         if (FireIsUnlocked)
         {
-            if (GameObject.FindGameObjectsWithTag("Projectile").Length < maxCubes)
-            {
-                fire = !fire;
-                if (LargeMagazineIsUnlocked)
-                {
-                    maxCubes = LargeMagazineMaxCubes;
-                }
-                else
-                {
-                    maxCubes = DefaultmaxCubes;
-                }
-            }
-            if (fire)
-            {
-                fire = !fire;
-                Rigidbody projectileInstance;
-                projectileInstance =
-                    Instantiate(ProjectileRBody,
-                    shootingPoint.position,
-                    shootingPoint.rotation);
-                projectileInstance.AddForce(shootingSpeed * shootingPoint.forward);
-                projectileInstance.AddRelativeTorque(0, rotationSpeed, 0);
-            }
+            //Make your own function
         }
     }
 
@@ -105,25 +67,7 @@ public class Abilities : MonoBehaviour
     {
         if (DashIsUnlocked)
         {
-            if (DashIsAvailable)
-            {
-                DashIsAvailable = false;
-                rbody.constraints |= RigidbodyConstraints.FreezePositionY;
-                rbody.velocity = rbody.transform.forward * DashDistance;
-                Invoke("StopDash", MaxDashTime);
-                Invoke("ResetDash", DashCooldown);
-            }
+            //Make your own function
         }
-    }
-
-    private void StopDash()
-    {
-        rbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        rbody.velocity = Vector3.zero;
-    }
-
-    private void ResetDash()
-    {
-        DashIsAvailable = true;
     }
 }
