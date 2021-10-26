@@ -4,6 +4,9 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
 public class SkillTreeGeneration : MonoBehaviour
@@ -151,7 +154,10 @@ public class SkillTreeGeneration : MonoBehaviour
             }
         }
         parent.parent.GetComponent<SkillTreeReader>().SetUpSkillTree();
-        UnityEditor.AssetDatabase.Refresh();
+
+#if UNITY_EDITOR
+        AssetDatabase.Refresh();
+#endif
     }
 
     public bool IsSkillUnlocked(int id_skill)

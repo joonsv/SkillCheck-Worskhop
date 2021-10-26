@@ -12,7 +12,7 @@ public class RegulatorXP : MonoBehaviour
     void Awake()
     {
 
-        SkillTreeReader skillTreeReader;
+       // SkillTreeReader skillTreeReader;
     }
  
     private void OnTriggerEnter(Collider other)
