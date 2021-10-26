@@ -4,23 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FirstPersonPlayerController : MonoBehaviour
+public class FirstPersonPlayerController : Abilities
 {
     [SerializeField, Range(10f, 100f)] private float mouseSensitivity = 40f; 
     [SerializeField] private float WalkSpeed = 10;
     [SerializeField] private float MinCameraRotation = -90;
     [SerializeField] private float MaxCameraRotation = 90;
-    [SerializeField] private float JumpHeight = 7;
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform shootingPoint;
-    [SerializeField] private int DefaultmaxCubes = 3;
-    [SerializeField] private int LargeMagazineMaxCubes = 10;
-    [SerializeField] private float shootingSpeed = 100;
-    [SerializeField] private float rotationSpeed = 10;
-    [SerializeField] private float SuperJumpModifier = 2;
-    [SerializeField] private float MaxDashTime = 0.4f;
-    [SerializeField] private float DashDistance = 20f;
-    [SerializeField] private float DashCooldown = 2f;
     [SerializeField] private GameObject mainMenu;
     private GameObject Reader;
 
@@ -28,9 +17,9 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private bool DoubleJumpIsUnlocked;
     [SerializeField] private bool SuperJumpIsUnlocked;
     [SerializeField] private bool DashIsUnlocked;
+    [SerializeField] private bool FireIsUnlocked;
     [SerializeField] private bool LargeMagazineIsUnlocked;
-
-    private int maxCubes;
+    
     private float horizontal;
     private float vertical;
     private float mouseX;
@@ -40,14 +29,6 @@ public class FirstPersonPlayerController : MonoBehaviour
     private Quaternion deltaRotation;
     private Quaternion QuatMaxRotation;
     private Quaternion QuatMinRotation;
-
-    private bool DashIsAvailable = true;
-    private bool DoubleJump;
-    private bool isGrounded;
-    private bool fire = false;
-
-    private Rigidbody rbody;
-    private Rigidbody ProjectileRBody;
     private Camera _cameraTransform;
     
 
@@ -57,10 +38,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody>();
         _cameraTransform = Camera.main;
-        ProjectileRBody = projectile.GetComponent<Rigidbody>();
-        maxCubes = DefaultmaxCubes;
         Reader = gameObject;
-   
     }
 
     private void Update()
@@ -69,7 +47,6 @@ public class FirstPersonPlayerController : MonoBehaviour
         JumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(0);
         DashIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(1);
         SuperJumpIsUnlocked = Reader.GetComponent<SkillTreeReader>().IsSkillUnlocked(2);
-
     }
 
     private void FixedUpdate()
@@ -99,43 +76,13 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     private void OnJump()
     {
-        if (JumpIsUnlocked)
-        {
-            NormalJump();
-        }
-        if (DoubleJumpIsUnlocked)
-        {
-            MidAirJump();
-        }
+        NormalJump(JumpIsUnlocked);
+        MidAirJump(DoubleJumpIsUnlocked);
     }
 
     private void OnSuperJump()
     {
-        if (SuperJumpIsUnlocked)
-        {
-            SuperJump();
-        }
-    }
-
-    private void NormalJump()
-    {
-        if (isGrounded)
-        {
-            Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
-            rbody.AddForce(Jump, ForceMode.Impulse);
-        }
-    }
-
-    private void MidAirJump()
-    {
-        //Debug.Log("Double Jump attempt");
-        if (DoubleJump == true && isGrounded == false)
-        {
-            //Debug.Log("Succes");
-            Vector3 Jump = new Vector3(0.0f, JumpHeight, 0.0f);
-            rbody.AddForce(Jump, ForceMode.Impulse);
-            DoubleJump = false;
-        }
+        SuperJump(SuperJumpIsUnlocked);
     }
 
     private void OnMenu()
@@ -154,71 +101,14 @@ public class FirstPersonPlayerController : MonoBehaviour
         }
     }
 
-    private void SuperJump()
-    {
-        if (isGrounded)
-        {
-            Vector3 Jump = new Vector3(0.0f, JumpHeight*SuperJumpModifier, 0.0f);
-            rbody.AddForce(Jump, ForceMode.Impulse);
-        }
-    }
-
     private void OnFire()
     {
-        if (GameObject.FindGameObjectsWithTag("Projectile").Length < maxCubes)
-        {
-            fire = !fire;
-            if (LargeMagazineIsUnlocked)
-            {
-                maxCubes = LargeMagazineMaxCubes;
-            }
-            else
-            {
-                maxCubes = DefaultmaxCubes;
-            }
-        }
-        if (fire)
-        {
-            fire = !fire;
-            Rigidbody projectileInstance;
-            projectileInstance =
-                Instantiate(ProjectileRBody,
-                shootingPoint.position,
-                shootingPoint.rotation);
-            projectileInstance.AddForce(shootingSpeed * shootingPoint.forward);
-            projectileInstance.AddRelativeTorque(0, rotationSpeed, 0);
-        }
+        Fire(FireIsUnlocked, LargeMagazineIsUnlocked);
     }
 
     private void OnDash()
     {
-        if (DashIsUnlocked)
-        {
-            Dash();
-        }
-    }
-
-    private void Dash()
-    {
-        if (DashIsAvailable)
-        {
-            DashIsAvailable = false;
-            rbody.constraints |= RigidbodyConstraints.FreezePositionY;
-            rbody.velocity = rbody.transform.forward * DashDistance;
-            Invoke("StopDash", MaxDashTime);
-            Invoke("ResetDash", DashCooldown);
-        }
-    }
-
-    private void StopDash()
-    {
-        rbody.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        rbody.velocity = Vector3.zero;
-    }
-
-    private void ResetDash()
-    {
-        DashIsAvailable = true;
+        Dash(DashIsUnlocked);
     }
 
     private void CameraHandler()
