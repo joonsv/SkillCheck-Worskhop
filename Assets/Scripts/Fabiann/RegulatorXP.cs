@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class RegulatorXP : MonoBehaviour
 {
-    private int xpPoints;
-    //public int skillPoints = 0;
-    [SerializeField] private int breadCrumbXP;
     public SkillTreeReader skillTreeReader;
-
-    void Awake()
-    {
-
-       // SkillTreeReader skillTreeReader;
-    }
- 
-    private void OnTriggerEnter(Collider other)
+    private float xpPoints;
+    [SerializeField] private float breadCrumbXP;
+    [SerializeField] private float xpTreshold;
+     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("SkillPoint"))
         {
@@ -31,15 +24,15 @@ public class RegulatorXP : MonoBehaviour
 
         }
     }
-    public void xpGain(int xpAmount)
+    public void xpGain(float xpAmount)
     {
         xpPoints += xpAmount;
-        if (xpPoints >= 10)
+        if (xpPoints >= xpTreshold)
         {
-            xpPoints = 0;
+            xpPoints -= xpTreshold;
             skillTreeReader.availablePoints += 1;
         }
-        Debug.Log(skillTreeReader.availablePoints);
     }
+
 }
 
