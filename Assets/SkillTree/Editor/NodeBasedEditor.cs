@@ -8,7 +8,6 @@ public class NodeBasedEditor : EditorWindow
 {
     private List<Node> nodes;
 
-    private Rect skilltreeRect;
     private Rect nodeDetailRect;
     private Rect resizer;
     private GUIStyle resizerStyle;
@@ -164,7 +163,7 @@ public class NodeBasedEditor : EditorWindow
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Skill Image");
-            selectedSkill.Image_sprite = (Sprite)EditorGUILayout.ObjectField(selectedSkill.Image_sprite, typeof(Sprite), allowSceneObjects: true);
+            selectedSkill.Image_sprite = (Sprite)EditorGUILayout.ObjectField(selectedSkill.Image_sprite, typeof(Sprite), allowSceneObjects: false);
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
             if (selectedSkill.Image_sprite != null)
@@ -274,6 +273,16 @@ public class NodeBasedEditor : EditorWindow
                 if (isResizing == true)
                 {
                     isResizing = false;
+                }
+                break;
+
+            case EventType.KeyDown:
+                if (e.keyCode == KeyCode.Delete) 
+                {
+                    if (selectedNode != null) 
+                    {
+                        selectedNode.OnRemoveNode(selectedNode);
+                    }
                 }
                 break;
         }
