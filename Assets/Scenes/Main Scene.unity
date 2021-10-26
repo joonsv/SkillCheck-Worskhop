@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,6 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3123aefefd7c884c98cea22884b27ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xpPoints: 0
+  skillPoints: 0
   breadCrumbXP: 0
 --- !u!1001 &1409754190
 PrefabInstance:
@@ -951,6 +953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3123aefefd7c884c98cea22884b27ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xpPoints: 0
+  skillPoints: 0
   breadCrumbXP: 2
 --- !u!1 &1812856426
 GameObject:
@@ -1129,7 +1133,7 @@ PrefabInstance:
       objectReference: {fileID: 3966191171055795878}
     - target: {fileID: 2016803654052662713, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: m_Name
-      value: L-Player
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3966191171664027286, guid: ce43c357ffb201349853d8855ca74ab8, type: 3}
       propertyPath: DashTime
